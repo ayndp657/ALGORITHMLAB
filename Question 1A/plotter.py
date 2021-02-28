@@ -2,7 +2,7 @@ import numpy as np
 import csv
 import matplotlib.pyplot as plt
 
-random_numbers = np.zeros(200)
+random_numbers = np.zeros(201)
 
 with open('./Question 1A/uniform_distribution.csv') as csv_file:
     csv_reader = csv.reader(csv_file)
@@ -13,6 +13,7 @@ with open('./Question 1A/uniform_distribution.csv') as csv_file:
     print(f"Processed {line_count} lines.")
 
 plt.figure("Histogram of Uniform Distribution Dataset")
+plt.title("Histogram of Uniform Distribution Dataset")
 plt.xlabel("Number")
 plt.ylabel("No. of Occurrence")
 plt.hist(random_numbers, bins=range(100))
