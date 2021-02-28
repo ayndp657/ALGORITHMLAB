@@ -2,10 +2,10 @@ import numpy as np  # for arrays
 import csv  # for reading .csv files
 import matplotlib.pyplot as plt  # for plotting
 
-# .csv has 200 values, so defining 200 value array
-random_numbers = np.zeros(200)
+# .csv has 10e6 values, so defining 10e6 value array
+random_numbers = np.zeros(int(10e6))
 
-with open('./Question 1A/uniform_distribution.csv') as csv_file:  # while .csv file is open
+with open('./Question 1A Uniform Distribution/uniform_distribution.csv') as csv_file:  # while .csv file is open
     csv_reader = csv.reader(csv_file, delimiter=',')  # define .csv file reader
     line_count = 0  # linecount made as index of array
     for row in csv_reader:  # parse through every lines
@@ -18,5 +18,5 @@ plt.figure("Histogram of Uniform Distribution Dataset")
 plt.title("Histogram of Uniform Distribution Dataset")
 plt.xlabel("Number")
 plt.ylabel("No. of Occurrence")
-plt.hist(random_numbers, bins=range(100))
+plt.hist(random_numbers, bins=range(101)) # 101 as between 0-100, there are 101 ranges
 plt.show()

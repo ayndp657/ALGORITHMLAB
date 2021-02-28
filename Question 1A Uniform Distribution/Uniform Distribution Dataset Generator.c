@@ -3,14 +3,14 @@
 #include <time.h>   //for random seed
 #include <stdlib.h> //for rand() and srand()
 
-const int NO_OF_ELEMENTS = 200;
+const int NO_OF_ELEMENTS = 10e6;
 const int MAX_VALUE = 100;
 
 void main()
 {
     srand(time(0));
 
-    FILE *fout = fopen("Question 1A/uniform_distribution.csv", "w");
+    FILE *fout = fopen("Question 1A Uniform Distribution/uniform_distribution.csv", "w");
 
     for (int i = 0; i < NO_OF_ELEMENTS; i++)
     {
