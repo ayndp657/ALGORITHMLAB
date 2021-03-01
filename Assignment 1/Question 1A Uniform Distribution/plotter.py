@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt  # for plotting
 # .csv has 10e6 values, so defining 10e6 value array
 random_numbers = np.zeros(int(10e6))
 
-with open('./Question 1A Uniform Distribution/uniform_distribution.csv') as csv_file:  # while .csv file is open
+with open('./Assignment 1/Question 1A Uniform Distribution/uniform_distribution.csv') as csv_file:  # while .csv file is open
     csv_reader = csv.reader(csv_file, delimiter=',')  # define .csv file reader
     line_count = 0  # linecount made as index of array
     for row in csv_reader:  # parse through every lines

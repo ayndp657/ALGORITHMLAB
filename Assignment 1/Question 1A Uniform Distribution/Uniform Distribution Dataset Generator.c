@@ -10,7 +10,7 @@ void main()
 {
     srand(time(0));
 
-    FILE *fout = fopen("Question 1A Uniform Distribution/uniform_distribution.csv", "w");
+    FILE *fout = fopen("./Assignment 1/Question 1A Uniform Distribution/uniform_distribution.csv", "w");
 
     for (int i = 0; i < NO_OF_ELEMENTS; i++)
     {
