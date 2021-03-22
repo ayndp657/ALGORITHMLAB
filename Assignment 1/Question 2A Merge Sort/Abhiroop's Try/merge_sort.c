@@ -62,13 +62,22 @@ void merge_sort(int *arr, int initial, int final)
     }
 }
 
+//assuming 1 is true, 0 is false
+int is_array_sorted(int *arr, int length)
+{
+    for (int i = 0; i < length - 1; i++)
+        if (arr[i] > arr[i + 1])
+            return 0;
+
+    return 1;
+}
+
 void main()
 {
     srand(time(0));
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 100; i++)
     {
-        int n = floor(pow(2,19));
-        printf("%d\n",n);
+        int n = floor(pow(2, 5));
         int a[n];
         for (int i = 0; i < n; i++)
             a[i] = rand() % 100;
@@ -77,6 +86,12 @@ void main()
         merge_sort(a, 0, n - 1);
         float end_time = clock();
 
-        printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
+        if (is_array_sorted(a, sizeof(a) / sizeof(int)) == 1)
+            printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
+        else
+        {
+            printf("Array Not Sorted\n");
+            break;
+        }
     }
 }
