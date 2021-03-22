@@ -26,7 +26,14 @@ int partition(int *arr, int initial, int final)
         while (pivot_value < arr[right_iterator])
             right_iterator--;
 
-        if (left_iterator < right_iterator && arr[left_iterator] != arr[right_iterator])
+        if (arr[left_iterator] == arr[right_iterator])
+        {
+            if (left_iterator == right_iterator)
+                return left_iterator;
+            else
+                right_iterator--;
+        }
+        else if (left_iterator < right_iterator)
             swap(&arr[left_iterator], &arr[right_iterator]);
         else
             return left_iterator;
@@ -44,22 +51,46 @@ void quick_sort(int *arr, int initial, int final)
     }
 }
 
+//assuming 1 is true, 0 is false
+int is_array_sorted(int *arr, int length)
+{
+    for (int i = 0; i < length - 1; i++)
+        if (arr[i] > arr[i + 1])
+            return 0;
+
+    return 1;
+}
+
 void main()
 {
 
     srand(time(0));
-    
-    for (int i = 0; i < 1;i++)
+
+    for (int i = 0; i < 5000; i++)
     {
-        int n = floor(pow(2,17));
+        int n = floor(pow(2, 4));
         int a[n];
         for (int i = 0; i < n; i++)
             a[i] = rand() % 100;
 
-        float initial_time = clock();
-        quick_sort(a, 0, n - 1);
-        float final_time = clock();
+        for (int i = 0; i < n; i++)
+            printf("%d ", a[i]);
+        printf("\n");
 
-        printf("Run %d: %0.4fms\n", i + 1, (final_time - initial_time) * 1000 / CLOCKS_PER_SEC);
+        float start_time = clock();
+        quick_sort(a, 0, n - 1);
+        float end_time = clock();
+
+        for (int i = 0; i < n; i++)
+            printf("%d ", a[i]);
+        printf("\n\n");
+
+        if (is_array_sorted(a, sizeof(a) / sizeof(int)) == 1)
+            printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
+        else
+        {
+            printf("Array Not Sorted\n");
+            break;
+        }
     }
 }
