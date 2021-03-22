@@ -5,7 +5,7 @@
 
 const int DATASET_SIZE = 10e6;
 
-void merge(int *arr, int initial, int mid, int final, long *count)
+void merge(short *arr, int initial, int mid, int final, int *count)
 {
     int size1 = mid - initial + 1;
     int arr1[size1];
@@ -65,7 +65,7 @@ void merge(int *arr, int initial, int mid, int final, long *count)
 }
 
 //sorts array of int type in ascending order, put initial as 0, and final as size -1
-void merge_sort(int *arr, int initial, int final, long *count)
+void merge_sort(short *arr, int initial, int final, int *count)
 {
     if (initial < final)
     {
@@ -77,7 +77,7 @@ void merge_sort(int *arr, int initial, int final, long *count)
 }
 
 //assuming 1 is true, 0 is false
-int is_array_sorted(int *arr, int length)
+int is_array_sorted(short *arr, int length)
 {
     for (int i = 0; i < length - 1; i++)
         if (arr[i] > arr[i + 1])
@@ -86,7 +86,7 @@ int is_array_sorted(int *arr, int length)
     return 1;
 }
 
-void text_to_arr(int *arr, int n)
+void text_to_arr(short *arr, int n)
 {
 
     FILE *fin = fopen("./normal_distribution.csv", "r");
@@ -100,40 +100,62 @@ void text_to_arr(int *arr, int n)
             fscanf(fin, "%d\n", &temp);
 
         fscanf(fin, "%d\n", &temp);
-        arr[i] = temp;
+        arr[i] = (short)temp;
     }
+
+    fclose(fin);
 }
 
 void main()
 {
     srand(time(0));
-    for (int i = 0; i < 100; i++)
+
+    int max_p = 20;
+    int num_iter_power = 100;
+
+    FILE *fout = fopen("observation.csv", "w");
+
+    fprintf(fout, "num_elements,avg_comparision\n");
+
+    int n = 1;
+    for (int p = 0; p <= max_p; p++)
     {
-        int n = floor(pow(2, 3));
-        int a[n];
+        long sum_count = 0;
 
-        text_to_arr(a, n);
-
-        // for (int i = 0; i < n; i++)
-        //     printf("%d ", a[i]);
-        // printf("\n");
-
-        long count = 0;
-        // float start_time = clock();
-        merge_sort(a, 0, n - 1, &count);
-        // float end_time = clock();
-
-        // for (int i = 0; i < n; i++)
-        //     printf("%d ", a[i]);
-        // printf("\n\n");
-
-        if (is_array_sorted(a, sizeof(a) / sizeof(int)) == 1)
-            // printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
-            printf("Run %d: %ld comparisions\n", i + 1, count);
-        else
+        for (int i = 0; i < num_iter_power; i++)
         {
-            printf("Array Not Sorted\n");
-            break;
+            short a[n];
+
+            text_to_arr(a, n);
+
+            // for (int i = 0; i < n; i++)
+            //     printf("%d ", a[i]);
+            // printf("\n");
+
+            int count = 0;
+            // float start_time = clock();
+            merge_sort(a, 0, n - 1, &count);
+            // float end_time = clock();
+            sum_count += count;
+
+            // for (int i = 0; i < n; i++)
+            //     printf("%d ", a[i]);
+            // printf("\n\n");
+
+            if (is_array_sorted(a, sizeof(a) / sizeof(int)) == 1)
+                // printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
+                printf("Num = %d Run %d: %d comparison\n", n, i + 1, count);
+            else
+            {
+                printf("Array Not Sorted\n");
+                break;
+            }
         }
+
+        long avg_count = sum_count / num_iter_power;
+        fprintf(fout, "%d,%ld\n", n, avg_count);
+        n *= 2;
     }
+
+    fclose(fout);
 }
