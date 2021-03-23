@@ -111,7 +111,7 @@ void main()
     fprintf(fout, "num_elements,avg_comparison,avg_time\n");
 
     int n = 2;
-    for (int p = 0; p <= max_p; p++)
+    for (int p = 0; p < max_p; p++)
     {
         long sum_count = 0;
         float sum_time = 0;
