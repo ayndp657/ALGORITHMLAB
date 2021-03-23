@@ -1,3 +1,5 @@
 
-the total number of elements:1748
-the total comparison:300355529
+the total number of elements:4434
+the total comparison:7597851
+the total number of elements:4268
+the total comparison:124904335

@@ -87,7 +87,7 @@ int partition (int a[], int start, int end)
 	unsigned int b = diff; 
     printf("%d", (int)b*(log(b)/log(2)));
     FILE *kptr;
-    kptr=fopen("result.txt","w");
+    kptr=fopen("result.txt","a");
     if(kptr == NULL)
     {
     	printf("ERROR!");
