@@ -10,19 +10,13 @@ void merge(short *arr, int initial, int mid, int final, int *count)
     int size1 = mid - initial + 1;
     int arr1[size1];
     for (int i = 0; i < size1; i++)
-    {
         arr1[i] = arr[initial + i];
-        (*count)++;
-    }
 
     int size2 = final - mid;
     int arr2[size2];
 
     for (int i = 0; i < size2; i++)
-    {
         arr2[i] = arr[mid + 1 + i];
-        (*count)++;
-    }
 
     int arr1_pos = 0;
     int arr2_pos = 0;
@@ -44,7 +38,6 @@ void merge(short *arr, int initial, int mid, int final, int *count)
             arr_pos++;
             (*count)++;
         }
-        (*count) += 2;
     }
 
     while (arr1_pos < size1)
@@ -115,12 +108,13 @@ void main()
 
     FILE *fout = fopen("observation.csv", "w");
 
-    fprintf(fout, "num_elements,avg_comparision\n");
+    fprintf(fout, "num_elements,avg_comparison,avg_time\n");
 
-    int n = 1;
+    int n = 2;
     for (int p = 0; p <= max_p; p++)
     {
         long sum_count = 0;
+        float sum_time = 0;
 
         for (int i = 0; i < num_iter_power; i++)
         {
@@ -133,18 +127,22 @@ void main()
             // printf("\n");
 
             int count = 0;
-            // float start_time = clock();
+
+            float start_time = clock();
             merge_sort(a, 0, n - 1, &count);
-            // float end_time = clock();
+            float end_time = clock();
+
             sum_count += count;
+
+            float time_taken = (end_time - start_time) * 1000 / CLOCKS_PER_SEC;
+            sum_time += time_taken;
 
             // for (int i = 0; i < n; i++)
             //     printf("%d ", a[i]);
             // printf("\n\n");
 
             if (is_array_sorted(a, sizeof(a) / sizeof(int)) == 1)
-                // printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
-                printf("Num = %d Run %d: %d comparison\n", n, i + 1, count);
+                printf("Num = %d Run %d: %d comparison, %0.4f ms\n", n, i + 1, count, time_taken);
             else
             {
                 printf("Array Not Sorted\n");
@@ -152,8 +150,9 @@ void main()
             }
         }
 
+        float avg_time = sum_time / num_iter_power;
         long avg_count = sum_count / num_iter_power;
-        fprintf(fout, "%d,%ld\n", n, avg_count);
+        fprintf(fout, "%d,%ld,%0.4f\n", n, avg_count, avg_time);
         n *= 2;
     }
 

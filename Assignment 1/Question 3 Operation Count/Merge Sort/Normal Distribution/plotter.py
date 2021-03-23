@@ -1,17 +1,29 @@
+from operator import truediv
+from numpy.lib.function_base import _rot90_dispatcher
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
 obs_df = pd.read_csv('observation.csv')
 
-plt.plot(obs_df['num_elements'],obs_df['avg_comparison'],'o')
+n = obs_df['num_elements'].to_numpy()
+comp = obs_df['avg_comparison'].to_numpy()
+time = obs_df['avg_time'].to_numpy()
 
+comp_ratio = comp/(n*np.log2(n))
 
-x = np.linspace(1, obs_df['num_elements'].max())
+fig, axis = plt.subplots(2, 1, sharex=True, figsize=(8, 5))
 
-# for c in np.linspace(3.8,3.9,5):
-y = 3.885*x * np.log2(x)
-plt.plot(x, y)
+fig.suptitle('Comparision and Time Ratio')
 
+axis[0].plot(comp_ratio, 'o-')
+axis[0].set_ylabel(r'$\frac{comp}{n*lgn}$', rotation=0, labelpad=13)
+
+time_ratio = time/(n*np.log2(n))
+
+axis[1].plot(time_ratio, 'o-')
+axis[1].set_ylabel(r'$\frac{time}{n*lgn}$', rotation=0, labelpad=13)
+
+plt.xlabel('No. of iterations')
 
 plt.show()
