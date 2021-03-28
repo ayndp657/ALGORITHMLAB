@@ -11,13 +11,6 @@ void swap(short *a, short *b)
     *b = c;
 }
 
-void swap(short &a, short &b)
-{
-    int c = a;
-    a = b;
-    b = c;
-}
-
 int partition(short *arr, int initial, int final, int *count)
 {
     int pivot_value = arr[initial];
