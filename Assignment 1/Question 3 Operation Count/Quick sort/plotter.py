@@ -30,7 +30,7 @@ time_ratio_uniform = time_uniform/(n_uniform*np.log2(n_uniform))
 time_ratio_normal = time_normal/(n_normal*np.log2(n_normal))
 
 axis[1].plot(time_ratio_uniform, 'o-', label='Uniform')
-axis[1].plot(time_ratio_normal, 'o-', label = 'Normal')
+axis[1].plot(time_ratio_normal, 'o--', label = 'Normal')
 axis[1].legend()
 axis[1].set_ylabel(r'$\frac{time}{n*lgn}$', rotation=0, labelpad=13)
 
