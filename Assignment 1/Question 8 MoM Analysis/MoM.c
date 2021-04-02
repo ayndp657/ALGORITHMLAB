@@ -62,49 +62,40 @@ int main()
 {
     srand(time(0));
 
-    int max_arr_size = 100000;
+    int arr_size = 100000;
     int num_iter = 10;
     float start_time, end_time, time_taken;
     double avg_time;
 
-    double time_obs[4];
-
     FILE *fout = fopen("MoM_obs.csv", "w");
-    fprintf(fout, "num_elements,partition_3,partition_5,partition_7,partition_9\n");
+    fprintf(fout, "div_size,avg_time\n");
 
-    for (int arr_size = 100; arr_size <= max_arr_size; arr_size +=100)
+    int divide_size;
+
+    short arr[arr_size];
+
+    for (int obs_counter = 0; obs_counter <= 1000; obs_counter++)
     {
-        short arr[arr_size];
+        divide_size = 2 * obs_counter + 3;
+        avg_time = 0;
 
-        for (int obs_counter = 0; obs_counter <= 3; obs_counter++)
+        for (int i = 0; i < num_iter; i++)
         {
-            int divide_size = 2 * obs_counter + 3;
-            avg_time = 0;
+            for (int j = 0; j < arr_size; j++)
+                arr[j] = rand() % 100;
 
-            if (divide_size == 7 && arr_size == 64)
-                printf("Test2");
+            start_time = clock();
+            int temp = median_of_median(arr, arr_size, divide_size);
+            end_time = clock();
 
-            for (int i = 0; i < num_iter; i++)
-            {
-                for (int j = 0; j < arr_size; j++)
-                    arr[j] = rand() % 100;
-
-                start_time = clock();
-                int temp = median_of_median(arr, arr_size, divide_size);
-                end_time = clock();
-
-                time_taken = (end_time - start_time) * 1000 / CLOCKS_PER_SEC;
-
-                printf("Num: %d divide_size: %d time: %0.4fms\n", arr_size, divide_size, time_taken);
-
-                avg_time += time_taken;
-            }
-
-            avg_time = avg_time / num_iter;
-            time_obs[obs_counter] = avg_time;
+            time_taken = (end_time - start_time) * 1000 / CLOCKS_PER_SEC;
+            avg_time += time_taken;
         }
 
-        fprintf(fout, "%d,%f,%f,%f,%f\n", arr_size, time_obs[0], time_obs[1], time_obs[2], time_obs[3]);
+        avg_time = avg_time / num_iter;
+
+        printf("divide_size: %4d avg_time: %3.4f ms\n", divide_size,avg_time);
+        fprintf(fout, "%d,%f\n", divide_size, avg_time);
     }
 
     fclose(fout);
