@@ -50,7 +50,7 @@ int median_of_median(short arr[], int arr_size, int divide_size)
 
     for (int i = 0; i < next_arr_size; i++)
     {
-        if (i == arr_size)
+        if (i == next_arr_size -1)
             next_arr[i] = give_median(arr, divide_size * i, arr_size - 1);
         else
             next_arr[i] = give_median(arr, divide_size * i, divide_size * (i + 1) - 1);
