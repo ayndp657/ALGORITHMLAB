@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from pandas.core.indexing import is_label_like
 
 obs_df = pd.read_csv('MoM_obs.csv')
 
