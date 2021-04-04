@@ -10,7 +10,7 @@ part_uniform = uniform_df['avg_partition_size'].to_numpy()
 n_normal = normal_df['arr_size'].to_numpy()
 part_normal = normal_df['avg_partition_size'].to_numpy()
 
-plt.figure()
+plt.figure(figsize=(10,8))
 plt.plot(n_uniform, part_uniform/n_uniform, '.', label='Uniform')
 plt.plot(n_normal, part_normal/n_normal, '.', label='Normal')
 plt.legend()

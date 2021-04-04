@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib
-from pandas.core.indexing import is_label_like
 
 uniform_df = pd.read_csv('merge_uniform_obs.csv')
 normal_df = pd.read_csv('merge_normal_obs.csv')
