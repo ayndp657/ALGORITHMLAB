@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h> //for true keyword
 
 // all position should be given according to zero indexed array
 void insertion_sort(short arr[], int initial, int final)
@@ -58,6 +59,54 @@ int median_of_median(short arr[], int arr_size, int divide_size)
     return median_of_median(next_arr, next_arr_size, divide_size);
 }
 
+void swap(short *a, short *b)
+{
+    short c = *a;
+    *a = *b;
+    *b = c;
+}
+
+int partition(short *arr, int initial, int final)
+{
+    int pivot_value = arr[initial];
+
+    int left_iterator = initial;
+    int right_iterator = final;
+
+    while (true)
+    {
+        while (arr[left_iterator] < pivot_value)
+            left_iterator++;
+
+        while (pivot_value < arr[right_iterator])
+            right_iterator--;
+
+        if (arr[left_iterator] == arr[right_iterator])
+        {
+            if (left_iterator == right_iterator)
+                return left_iterator;
+            else
+                right_iterator--;
+        }
+        else if (left_iterator < right_iterator)
+            swap(&arr[left_iterator], &arr[right_iterator]);
+        else
+            return left_iterator;
+    }
+}
+
+int find_partition_size_MoM(short *arr, int arr_size, int divide_size)
+{
+    int val = median_of_median(arr, arr_size, divide_size);
+
+    for (int i = 0; i < arr_size; i++)
+        if (arr[i] == val)
+        {
+            swap(&arr[0], &arr[i]);
+            return partition(arr, 0, arr_size - 1);
+        }
+}
+
 void text_to_arr(short *arr, int n)
 {
 
@@ -83,35 +132,33 @@ int main()
     srand(time(0));
 
     const int max_arr_size = 1e5;
+
     int divide_size = 5;
     int num_iter = 10;
-    float start_time, end_time, time_taken;
-    double avg_time;
+    int part_size;
+    float avg_part_size;
 
     FILE *fout = fopen("MoM_uniform_obs.csv", "w");
-    fprintf(fout, "arr_size,avg_time\n");
+    fprintf(fout, "arr_size,avg_partition_size\n");
 
-    for (int arr_size = 100; arr_size <= max_arr_size; arr_size+=100)
+    for (int arr_size = 100; arr_size <= max_arr_size; arr_size += 100)
     {
         short arr[arr_size];
-        avg_time = 0;
+        avg_part_size = 0;
 
         for (int i = 0; i < num_iter; i++)
         {
-            text_to_arr(arr,arr_size);
+            text_to_arr(arr, arr_size);
 
-            start_time = clock();
-            int temp = median_of_median(arr, arr_size, divide_size);
-            end_time = clock();
+            part_size = find_partition_size_MoM(arr,arr_size,divide_size);
 
-            time_taken = (end_time - start_time) * 1000 / CLOCKS_PER_SEC;
-            avg_time += time_taken;
+            avg_part_size += part_size;
         }
 
-        avg_time = avg_time / num_iter;
+        avg_part_size = avg_part_size / num_iter;
 
-        printf("array_size: %6d avg_time: %.5f ms\n", arr_size, avg_time);
-        fprintf(fout, "%d,%f\n", arr_size, avg_time);
+        printf("array_size: %d avg_part_size: %f \n", arr_size, avg_part_size);
+        fprintf(fout, "%d,%f\n", arr_size, avg_part_size);
     }
 
     fclose(fout);
