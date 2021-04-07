@@ -7,80 +7,30 @@ typedef struct LL
 {
     float data;
     struct LL *next;
+    struct LL *prev;
 } node;
 
-node *LL_insert(node *list, float d, int *count)
+node *LL_insert(node *list, float d)
 {
     node *new_node = (node *)malloc(sizeof(node));
     new_node->next = NULL;
+    new_node->prev = NULL;
     new_node->data = d;
 
     if (list == NULL)
-    {
         list = new_node;
-        (*count)++;
-    }
     else
     {
         node *temp = list;
 
         while (temp->next != NULL)
-        {
             temp = temp->next;
-            (*count) += 2;
-        }
 
         temp->next = new_node;
+        new_node->prev = temp;
     }
 
     return list;
-}
-
-void sortedInsert( node **head_ref,  node *new_node)
-{
-    node *current;
-    /* Special case for the head end */
-    if (*head_ref == NULL || (*head_ref)->data >= new_node->data)
-    {
-        new_node->next = *head_ref;
-        *head_ref = new_node;
-    }
-    else
-    {
-        /* Locate the node before the point of insertion */
-        current = *head_ref;
-        while (current->next != NULL &&
-               current->next->data < new_node->data)
-        {
-            current = current->next;
-        }
-        new_node->next = current->next;
-        current->next = new_node;
-    }
-}
-
-void insertionSort(node **head_ref)
-{
-    // Initialize sorted linked list
-    node *sorted = NULL;
-
-    // Traverse the given linked list and insert every
-    // node to sorted
-    node *current = *head_ref;
-    while (current != NULL)
-    {
-        // Store next for next iteration
-        node *next = current->next;
-
-        // insert current in sorted linked list
-        sortedInsert(&sorted, current);
-
-        // Update current
-        current = next;
-    }
-
-    // Update head_ref to point to sorted linked list
-    *head_ref = sorted;
 }
 
 void showLL(node *list)
@@ -100,10 +50,45 @@ node *delete_start(node *list, float *d)
     node *temp = list;
     list = list->next;
 
+    if(list!= NULL && list->prev != NULL)
+        list->prev = NULL;
+
     *d = temp->data;
     free(temp);
 
     return list;
+}
+
+void swap(float *a, float *b)
+{
+    float c = *a;
+    *a = *b;
+    *b = c;
+}
+
+node *insertion_sort(node *list, int *count)
+{
+    if (list != NULL)
+    {
+        node *ahead = list->next;
+
+        while (ahead != NULL)
+        {
+            node *rev = ahead;
+
+            while (rev->prev != NULL && rev->prev->data > rev->data)
+            {
+                swap(&(rev->data), &(rev->prev->data));
+                rev = rev->prev;
+                (*count)++;
+            }
+            ahead = ahead->next;
+            (*count)++;
+        }
+
+        return list;
+    }
+    return NULL;
 }
 
 void bucket_sort(float *arr, int n, int *count)
@@ -118,11 +103,11 @@ void bucket_sort(float *arr, int n, int *count)
     for (int i = 0; i < n; i++)
     {
         pos = floor(n * arr[i]);
-        bins[pos] = LL_insert(bins[pos], arr[i], count);
+        bins[pos] = LL_insert(bins[pos], arr[i]);
     }
 
     for (int i = 0; i < n; i++)
-        insertionSort(&bins[i]);
+        bins[i] = insertion_sort(bins[i], count);
 
     pos = 0;
     float temp;
@@ -190,7 +175,7 @@ void main()
 {
     srand(time(0));
 
-    int max_p = 14;
+    int max_p = 17;
     int num_iter_power = 10;
 
     FILE *fout = fopen("bucket_normal_obs.csv", "w");
@@ -207,7 +192,7 @@ void main()
         {
             float a[n];
 
-            text_to_arr(a, n);
+            text_to_arr(a,n);
 
             // for (int i = 0; i < n; i++)
             //     printf("%0.2f,", a[i]);
@@ -244,5 +229,8 @@ void main()
     }
 
     fclose(fout);
+
+
+
 
 }

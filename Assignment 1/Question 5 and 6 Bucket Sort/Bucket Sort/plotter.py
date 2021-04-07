@@ -19,22 +19,13 @@ time_normal = normal_df['avg_time'].to_numpy()
 comp_ratio_normal = comp_normal/(n_normal)
 time_ratio_normal = time_normal/(n_normal)
 
-fig, axis = plt.subplots(2, 1, figsize=(10, 7))
 
-fig.suptitle('Comparision and Time Ratio')
+plt.title('Comparision and Time Ratio')
+plt.plot(n_uniform,time_uniform, 'o-', label='Uniform')
+plt.plot(n_normal,time_normal, 'o-', label = 'Normal')
+plt.legend()
+plt.ylabel('time(ms)')
 
-x_axis = range(1,15)
-
-axis[0].plot(x_axis,comp_ratio_uniform, 'o-', label='Uniform')
-axis[0].plot(x_axis,comp_ratio_normal, 'o-', label='Normal')
-axis[0].legend()
-axis[0].set_ylabel(r'$\frac{comp}{n}$', rotation=0, labelpad=13)
-
-axis[1].plot(x_axis,time_ratio_uniform, 'o-', label='Uniform')
-axis[1].plot(x_axis,time_ratio_normal, 'o-', label = 'Normal')
-axis[1].legend()
-axis[1].set_ylabel(r'$\frac{time}{n}$', rotation=0, labelpad=13)
-
-plt.xlabel(r'n [array size = $2^n$]')
+plt.xlabel('array size(n)')
 
 plt.savefig('observation.png')
