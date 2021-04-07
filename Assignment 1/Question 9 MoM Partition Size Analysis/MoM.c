@@ -133,12 +133,12 @@ int main()
 
     const int max_arr_size = 1e5;
 
-    int divide_size = 5;
+    int divide_size = 7;
     int num_iter = 10;
     int part_size;
     float avg_part_size;
 
-    FILE *fout = fopen("MoM_uniform_obs.csv", "w");
+    FILE *fout = fopen("MoM_uniform_part_7_obs.csv", "w");
     fprintf(fout, "arr_size,avg_partition_size\n");
 
     for (int arr_size = 100; arr_size <= max_arr_size; arr_size += 100)
