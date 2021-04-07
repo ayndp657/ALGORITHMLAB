@@ -45,9 +45,9 @@ axis[0].legend()
 axis[0].set_ylabel(r'$\frac{comp}{n*lgn}$', rotation=0, labelpad=13)
 
 axis[1].plot(time_ratio_uniform, 'o-', label='Uniform')
-axis[1].plot(time_ratio_random_uniform, 'o--', label='Randdom Uniform')
+axis[1].plot(time_ratio_random_uniform, 'o--', label='Random Uniform')
 axis[1].plot(time_ratio_normal, 'o-', label = 'Normal')
-axis[1].plot(time_ratio_random_normal, 'o--', label='Randdom Uniform')
+axis[1].plot(time_ratio_random_normal, 'o--', label='Random Uniform')
 axis[1].legend()
 axis[1].set_ylabel(r'$\frac{time}{n*lgn}$', rotation=0, labelpad=13)
 
