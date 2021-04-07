@@ -51,7 +51,7 @@ axis[1].plot(x_axis,time_1_5000, '.-', label='1/5000')
 axis[1].plot(x_axis,time_1_1000, '.-', label='1/1000')
 axis[1].plot(x_axis,time_normal, '.-', label = 'Randomized')
 axis[1].legend()
-axis[1].set_ylabel('time taken')
+axis[1].set_ylabel('time taken (ms)')
 
 plt.xlabel(r'n [array size = $2^n$]')
 
