@@ -21,9 +21,7 @@ int MatrixChainOrder(int p[], int i, int j)
 	// return the minimum count
 	for (k = i; k < j; k++)
 	{
-		count = MatrixChainOrder(p, i, k)
-				+ MatrixChainOrder(p, k + 1, j)
-				+ p[i - 1] * p[k] * p[j];
+		count = MatrixChainOrder(p, i, k) + MatrixChainOrder(p, k + 1, j) + p[i - 1] * p[k] * p[j];
 
 		if (count < min)
 			min = count;
@@ -42,7 +40,7 @@ int main()
 		int a[6];
 		for (int j = 0; j < 6; j++)
 		{
-			a[j] = rand() % 10;
+			a[j] = rand() % 10 + 1;
 		}
 		printf("\nArray elements are : \n");
 		for (int j = 0; j < 6; j++)
@@ -51,11 +49,10 @@ int main()
 		}
 		float start_time = clock();
 		printf("\nMinimum number of multiplications is %d ",
-		MatrixChainOrder(a, 1, 5));
+			   MatrixChainOrder(a, 1, 5));
 		printf("\n");
 		float end_time = clock();
 		printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
 	}
-	getchar();
 	return 0;
 }

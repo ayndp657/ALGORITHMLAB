@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <limits.h>
 // Matrix Ai has dimension p[i-1] x p[i]
 // for i = 1..n
 int MatrixChainOrder(int p[], int n)
@@ -54,11 +55,11 @@ int MatrixChainOrder(int p[], int n)
 	{
 		for (int j = 1; j < i; j++)
 		{
-			printf("- ");
+			printf("-\t");
 		}
 		for (int j = i; j < n; j++)
 		{
-			printf("%d ", m[i][j]);
+			printf("%d\t", m[i][j]);
 		}
 		printf("\n");
 	}
@@ -89,7 +90,7 @@ int main()
 		int a[6];
 		for (int j = 0; j < 6; j++)
 		{
-			a[j] = rand() % 10;
+			a[j] = rand() % 10 + 1;
 		}
 		printf("\nArray elements are : \n");
 		for (int j = 0; j < 6; j++)
@@ -103,6 +104,5 @@ int main()
 		float end_time = clock();
 		printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
 	}
-	getchar();
 	return 0;
 }
