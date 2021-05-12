@@ -1,1 +1,11 @@
-fb_tree = 10.9265 ms
+fb_tree = 203.307ms
+    vertex = 4039
+    edges = 88234
+
+epinion_tree= 1477.48ms
+    vertex = 75888
+    edge = 508837
+
+Journal_tree=205968ms
+    vertex=4847571
+    edge=68993773
