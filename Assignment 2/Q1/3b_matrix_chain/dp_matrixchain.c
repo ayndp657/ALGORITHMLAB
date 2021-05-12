@@ -51,31 +51,31 @@ int MatrixChainOrder(int p[], int n)
 		}
 	}
 	//cout<<"\n"<<"Final value ";
-	for (int i = 1; i < n; i++)
-	{
-		for (int j = 1; j < i; j++)
-		{
-			printf("-\t");
-		}
-		for (int j = i; j < n; j++)
-		{
-			printf("%d\t", m[i][j]);
-		}
-		printf("\n");
-	}
-	printf("\n");
-	for (int i = 1; i < n; i++)
-	{
-		for (int j = 1; j < i; j++)
-		{
-			printf("- ");
-		}
-		for (int j = i; j < n; j++)
-		{
-			printf("%d ", s[i][j]);
-		}
-		printf("\n");
-	}
+	// for (int i = 1; i < n; i++)
+	// {
+	// 	for (int j = 1; j < i; j++)
+	// 	{
+	// 		printf("-\t");
+	// 	}
+	// 	for (int j = i; j < n; j++)
+	// 	{
+	// 		printf("%d\t", m[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+	// printf("\n");
+	// for (int i = 1; i < n; i++)
+	// {
+	// 	for (int j = 1; j < i; j++)
+	// 	{
+	// 		printf("- ");
+	// 	}
+	// 	for (int j = i; j < n; j++)
+	// 	{
+	// 		printf("%d ", s[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
 	printf("\n");
 	printf("\nMinimum number of multiplications is  : %d", m[1][n - 1]);
 	return m[1][n - 1];
@@ -84,25 +84,26 @@ int MatrixChainOrder(int p[], int n)
 // Driver Code
 int main()
 {
+	srand(time(0));
 	for (int i = 0; i < 100; i++)
 	{
-		//srand(time(0));
-		int a[6];
-		for (int j = 0; j < 6; j++)
+		int n=pow(3,i+1);
+		int a[n];
+		for (int j = 0; j < n; j++)
 		{
 			a[j] = rand() % 10 + 1;
 		}
-		printf("\nArray elements are : \n");
-		for (int j = 0; j < 6; j++)
-		{
-			printf("%d , ", a[j]);
-		}
+		// printf("\nArray elements are : \n");
+		// for (int j = 0; j < 6; j++)
+		// {
+		// 	printf("%d , ", a[j]);
+		// }
 		float start_time = clock();
-		printf("\nMatrix table and table for bracket is : \n");
-		MatrixChainOrder(a, 6);
+		//printf("\nMatrix table and table for bracket is : \n");
+		MatrixChainOrder(a, n);
 		printf("\n");
 		float end_time = clock();
-		printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
+		printf("Run %d: %0.4f ms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
 	}
 	return 0;
 }
