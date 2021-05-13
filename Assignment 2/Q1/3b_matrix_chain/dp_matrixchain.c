@@ -88,7 +88,7 @@ int main()
 	FILE *fptr;
 	fptr = fopen("./dp_matrixchain.txt", "w");
 	fprintf(fptr,"n,avg_time_take_ms\n");
-	for (int n = 1; n <= 22; n++)
+	for (int n = 3; n <= 22; n++)
 	{
 		float sum=0.0000,avg=0.0000;
 		for (int i = 0; i < 2; i++)
