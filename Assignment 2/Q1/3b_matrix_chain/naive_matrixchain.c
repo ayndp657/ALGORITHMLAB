@@ -34,25 +34,36 @@ int MatrixChainOrder(int p[], int i, int j)
 // Driver code
 int main()
 {
-	for (int i = 0; i < 100; i++)
+	//srand(time(0));
+	FILE *fptr;
+	fptr = fopen("./naive_matrixchain.txt", "w");
+	fprintf(fptr,"n,avg_time_take_ms\n");
+	for (int n = 3; n <= 22; n++)
 	{
-		//srand(time(0));
-		int a[6];
-		for (int j = 0; j < 6; j++)
+		float sum=0.0000,avg=0.0000;
+		for (int i = 0; i < 2; i++)
 		{
-			a[j] = rand() % 10 + 1;
+			int a[n];
+			for (int j = 0; j < n; j++)
+			{
+				a[j] = rand() % 10 + 1;
+			}
+			// printf("\nArray elements are : \n");
+			// for (int j = 0; j < 6; j++)
+			// {
+			// 	printf("%d , ", a[j]);
+			// }
+			float start_time = clock();
+			printf("\nMinimum number of multiplications is %d ",
+				   MatrixChainOrder(a, 1, n - 1));
+			printf("\n");
+			float end_time = clock();
+			sum=(end_time - start_time) * 1000 / CLOCKS_PER_SEC+sum;
+			printf("n is %d Run %d: %0.4fms\n", n, i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
 		}
-		printf("\nArray elements are : \n");
-		for (int j = 0; j < 6; j++)
-		{
-			printf("%d , ", a[j]);
-		}
-		float start_time = clock();
-		printf("\nMinimum number of multiplications is %d ",
-			   MatrixChainOrder(a, 1, 5));
-		printf("\n");
-		float end_time = clock();
-		printf("Run %d: %0.4fms\n", i + 1, (end_time - start_time) * 1000 / CLOCKS_PER_SEC);
+		avg=sum/2;
+		fprintf(fptr,"%d,%0.4f\n",n,avg);
 	}
+	fclose(fptr);
 	return 0;
 }
