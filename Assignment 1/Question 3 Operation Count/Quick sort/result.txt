@@ -1,0 +1,19 @@
+
+the total number of elements:4434
+the total comparison:7597851
+the total number of elements:4268
+the total comparison:124904335
+the total number of elements:3477
+the total comparison:1003573323
+
+the total number of elements:4518
+the total comparison:-180970548
+
+the total number of elements:39
+the total comparison:-1786277491
+
+the total number of elements:26381
+the total comparison:1375518485
+
+the total number of elements:3909
+the total comparison:219222255
