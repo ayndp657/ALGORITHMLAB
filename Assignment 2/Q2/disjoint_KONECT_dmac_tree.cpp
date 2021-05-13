@@ -5,13 +5,11 @@ using namespace std;
 #include <sstream>
 #include <ctime>
 
-//will try to save as much space as possible cause idk my lappy can handle this abomination or not
-
 //taken from dataset website
-const u_long num_vertex = 4039; //vertex numbering goes from 0 to 4038
-const u_long num_edges = 88234; //umber of lines in dataset, will be inly used to display progress bar
+const u_long num_vertex = 6262104; //vertex numbering goes from 1 to 6262104
+const u_long num_edges = 15119284; //number of lines in dataset, will be inly used to display progress bar
 
-const char file_path[] = "Dataset/SNAP/Facebook/facebook_combined.txt";
+const char file_path[] = "Dataset/KONECT/dimacs9-W/out.dimacs9-W";
 
 struct node
 {
@@ -66,25 +64,32 @@ void update_edge(edge &given_edge, ifstream &fin)
 {
     if (!fin.eof())
     {
-        char line[10];
-        fin.getline(line, 10);
+        char line[100];
+        fin.getline(line, 100);
+
+        //removing commented lines
+        if (line[0] == '%')
+        {
+            while (line[0] == '%')
+                fin.getline(line, 100);
+        }
 
         stringstream str_strm;
         str_strm << line; //convert the string s into stringstream
 
-        char num[5];
+        char num[20];
 
         str_strm >> num;
-        given_edge.value1 = atoi(num);
+        given_edge.value1 = atoi(num) -1 ; //convert 1 indexed to 0 indexed
 
         str_strm >> num;
-        given_edge.value2 = atoi(num);
+        given_edge.value2 = atoi(num) -1 ;//convert 1 indexed to 0 indexed
 
         // cout << given_edge.value1 << " " << given_edge.value2 << endl;
     }
 }
 
-const int num_iter = 10;
+const int num_iter = 1;
 
 int main()
 {
@@ -105,7 +110,7 @@ int main()
             update_edge(temp, fin);
             UNION(temp);
 
-            cout << (float)i / (num_edges - 1) * 100 << "% done\r";
+            cout << (float)i / num_edges * 100 << "% done \r";
         }
 
         fin.close();
