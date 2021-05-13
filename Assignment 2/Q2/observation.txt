@@ -1,11 +1,15 @@
-fb_tree = 203.307ms
+SNAP_fb_tree = 203.307ms
     vertex = 4039
     edges = 88234
 
-epinion_tree= 1477.48ms
+SNAP_epinion_tree= 1477.48ms
     vertex = 75888
     edge = 508837
 
-Journal_tree=205968ms
+SNAP_Journal_tree=205968ms
     vertex=4847571
     edge=68993773
+
+KONECT_dimacs9_tree = 51014ms
+    vertex = 6262104
+    edges = 15119284
