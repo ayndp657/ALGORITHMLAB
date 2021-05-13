@@ -32,7 +32,7 @@ axis[1].plot(time_ratio_normal, 'o--', label = 'Normal')
 axis[1].legend()
 axis[1].set_ylabel(r'$\frac{time}{n*lgn}$', rotation=0, labelpad=13)
 
-plt.xlabel('No. of iterations')
+plt.xlabel(r'n [array size = $2^n$]')
 
 plt.show()
 plt.savefig('observation.png')
