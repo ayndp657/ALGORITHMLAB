@@ -13,6 +13,25 @@ time_greedy = greedy_df['avg_time_taken_ms'].to_numpy()
 n_brute = brute_df['n'].to_numpy()
 time_brute = brute_df['avg_time_taken_ms'].to_numpy()
 
+
+brute_t_ratio = time_brute / 2**n_brute
+plt.figure()
+plt.plot(n_brute, brute_t_ratio, '.-')
+plt.xlabel('Array Size(n)')
+plt.ylabel('Time taken / 2^n')
+plt.title('Brute Force Algorithm')
+plt.xticks(range(2, 26, 2))
+plt.savefig('brute.png')
+
+greedy_t_ratio = time_greedy / (n_greedy* np.log2(n_greedy))
+plt.figure()
+plt.plot(n_greedy, greedy_t_ratio, '.-')
+plt.xlabel('Array Size(n)')
+plt.ylabel('Time taken / (n*lgn)')
+plt.title('Greedy Algorithm')
+plt.xticks(range(2, 26, 2))
+plt.savefig('greedy.png')
+
 plt.figure()
 plt.plot(n_greedy, time_greedy, '.-', label='Greedy')
 plt.plot(n_brute, time_brute, '.-', label='Brute Force')

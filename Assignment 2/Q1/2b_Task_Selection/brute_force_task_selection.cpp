@@ -58,7 +58,7 @@ void update_penalty(bool *binary, task *tasks, const u_long &num_tasks, u_long &
 }
 
 const int max_n = 25;
-const int num_iter_per_n = 10;
+const int num_iter_per_n = 1;
 
 int main()
 {
