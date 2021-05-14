@@ -61,7 +61,7 @@ u_long greedy_task_selection(task *data, const u_long arr_size)
     return penalty;
 }
 
-const int max_n = 25;
+const int max_n = 50;
 const int num_iter_per_n = 10;
 
 int main()
