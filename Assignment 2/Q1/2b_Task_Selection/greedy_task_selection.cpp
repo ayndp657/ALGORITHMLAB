@@ -1,23 +1,13 @@
 #include <iostream>
 using namespace std;
 #include <stdlib.h> //for qsort()
-
-const int x = 1;
-const int y = 0;
-const int z = 9;
-
-const int arr_size = 6;
+#include <fstream>
 
 typedef struct task
 {
     int deadline;
     int penalty;
 } task;
-
-int generate_num(int a, int b)
-{
-    return 10 * a + b;
-}
 
 int comp_task(const void *a, const void *b)
 {
@@ -33,15 +23,8 @@ bool is_equal(const task &a, const task &b)
     return false;
 }
 
-int main()
+u_long greedy_task_selection(task *data, const u_long arr_size)
 {
-    task data[arr_size] = {{y + 1, generate_num(z, x) + 30},
-                           {x + 2, generate_num(y, z) + 20},
-                           {3, 50},
-                           {2, 60},
-                           {1, 25},
-                           {4, 35}};
-
     qsort(data, arr_size, sizeof(task), comp_task);
 
     int max_deadline = -1;
@@ -52,7 +35,7 @@ int main()
 
     int N[max_deadline] = {0};
     bool included[arr_size] = {false};
-    int penalty = 0;
+    u_long penalty = 0;
 
     for (int i = 0; i < arr_size; i++)
     {
@@ -75,29 +58,43 @@ int main()
         }
     }
 
-    task backup[arr_size] = {{y + 1, generate_num(z, x) + 30},
-                             {x + 2, generate_num(y, z) + 20},
-                             {3, 50},
-                             {2, 60},
-                             {1, 25},
-                             {4, 35}};
+    return penalty;
+}
 
-    cout << "Following Tasks Are Selected: ";
+const int max_n = 25;
+const int num_iter_per_n = 10;
 
-    for (int i = 0; i < arr_size; i++)
+int main()
+{
+    ofstream fout("greedy.csv", ios::out);
+    fout << "n,avg_time_taken_ms" << endl;
+
+    srand(time(0));
+
+    for (int arr_size = 2; arr_size <= max_n; arr_size++)
     {
-        for (int j = 0; j < arr_size; j++)
+        float avg_time = 0;
+        for (int i = 0; i < num_iter_per_n; i++)
         {
-            if (is_equal(backup[i], data[j]))
+            task data[arr_size];
+
+            for (int i = 0; i < arr_size; i++)
             {
-                if (included[j])
-                    cout << "T" << i + 1 << ", ";
+                data[i].deadline = rand() % arr_size + 1;
+                data[i].penalty = (rand() % arr_size + 1) * 10;
             }
+
+            float start_time = clock();
+            u_long penalty = greedy_task_selection(data, arr_size);
+            float end_time = clock();
+            float time_taken = (end_time - start_time) * 1000 / CLOCKS_PER_SEC;
+            cout << "size " << arr_size << " Time Taken: " << time_taken << "ms" << endl;
+            avg_time += time_taken;
         }
+        avg_time /= num_iter_per_n;
+        fout << arr_size << "," << avg_time << endl;
     }
 
-    cout << endl
-         << "Penalty: " << penalty << endl;
-
+    fout.close();
     return 0;
 }
