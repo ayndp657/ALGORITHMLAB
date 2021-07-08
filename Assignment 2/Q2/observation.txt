@@ -9,6 +9,7 @@ SNAP_epinion_list= 602489ms
     edge = 508837
 
 SNAP_Journal_tree=205968ms
+SNAP_Journal_tree_arr =  175814ms
 SNAP_Journal_list=Worked for approx 3 hours to reach 1% completion (stopped it)
     vertex=4847571
     edge=68993773
