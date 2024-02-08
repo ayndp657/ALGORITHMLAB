@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib
 from pandas.core.indexing import is_label_like
 
-uniform_df = pd.read_csv('bucket_uniform_obs.csv')
-normal_df = pd.read_csv('bucket_normal_obs.csv')
+uniform_df = pd.read_csv('bucketuniform_obs.csv')
+normal_df = pd.read_csv('bucketnormal_obs.csv')
 
 n_uniform = uniform_df['num_elements'].to_numpy()
 comp_uniform = uniform_df['avg_comparison'].to_numpy()
@@ -31,4 +31,4 @@ plt.ylabel(r'$\frac{time}{arr size}$', rotation=0, labelpad=13)
 
 plt.xlabel(r'n [array size = $2^n$]')
 
-plt.savefig('observation.png')
+plt.savefig('observationbucket.png')
