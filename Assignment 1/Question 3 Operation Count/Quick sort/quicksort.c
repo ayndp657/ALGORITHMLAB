@@ -67,7 +67,7 @@ int is_array_sorted(short *arr, int length)
 void text_to_arr(short *arr, int n)
 {
 
-    FILE *fin = fopen("./uniform_distribution.csv", "r");
+    FILE *fin = fopen("./uniformdistribution.csv", "r");
 
     int temp = 0;
     for (int i = 0; i < n; i++)
@@ -92,7 +92,7 @@ void main()
     int max_p = 20;
     int num_iter_power = 50;
 
-    FILE *fout = fopen("quick_uniform_obs.csv", "w");
+    FILE *fout = fopen("quickuniform_obs.csv", "w");
 
     fprintf(fout, "num_elements,avg_comparison,avg_time\n");
 
