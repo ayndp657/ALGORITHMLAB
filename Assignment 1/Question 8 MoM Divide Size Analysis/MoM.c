@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-// all position should be given according to zero indexed array
+
 void insertion_sort(short arr[], int initial, int final)
 {
     for (int i = initial; i <= final; i++)
@@ -18,7 +18,7 @@ void insertion_sort(short arr[], int initial, int final)
     }
 }
 
-// all position should be given according to zero indexed array
+
 int give_median(short arr[], int initial, int final)
 {
     insertion_sort(arr, initial, final);
