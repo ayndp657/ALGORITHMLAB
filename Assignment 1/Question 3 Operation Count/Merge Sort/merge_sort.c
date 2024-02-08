@@ -82,7 +82,7 @@ int is_array_sorted(short *arr, int length)
 void text_to_arr(short *arr, int n)
 {
 
-    FILE *fin = fopen("./normal_distribution.csv", "r");
+    FILE *fin = fopen("./normaldistribution.csv", "r");
 
     int temp = 0;
     for (int i = 0; i < n; i++)
