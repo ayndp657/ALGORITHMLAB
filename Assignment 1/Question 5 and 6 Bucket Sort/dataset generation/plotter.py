@@ -2,7 +2,7 @@ import numpy as np  # for arrays
 import matplotlib.pyplot as plt  # for plotting
 import pandas as pd
 
-df = pd.read_csv('normalized_normal_distribution.csv')
+df = pd.read_csv('normalized_normaldistribution.csv')
 
 plt.figure(figsize=(10,6))
 plt.xlabel("Number")
