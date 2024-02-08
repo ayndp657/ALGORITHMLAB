@@ -18,4 +18,4 @@ plt.xlabel('arr_size (n)')
 plt.ylabel(r'$\frac{partitions}{n}$')
 plt.title('Time vs Array Size in MoM with divide size 7')
 
-plt.savefig('observation3.png')
+plt.savefig('observation_3.png')
