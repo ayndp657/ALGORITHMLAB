@@ -1,8 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-uniform_df = pd.read_csv('MoM_uniform_part_7_obs.csv')
-normal_df = pd.read_csv('MoM_normal_part_7_obs.csv')
+uniform_df = pd.read_csv('MoMuniform_part_7_obs.csv')
+normal_df = pd.read_csv('MoMnormal_part_7_obs.csv')
 
 n_uniform = uniform_df['arr_size'].to_numpy()
 part_uniform = uniform_df['avg_partition_size'].to_numpy()
