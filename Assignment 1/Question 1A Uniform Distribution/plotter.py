@@ -1,4 +1,4 @@
-import numpy as np  # for arrays
+import numpy as np  
 import csv  # for reading .csv files
 import matplotlib.pyplot as plt  # for plotting
 
