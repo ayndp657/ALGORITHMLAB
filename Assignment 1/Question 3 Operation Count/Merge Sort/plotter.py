@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-uniform_df = pd.read_csv('merge_uniform_obs.csv')
-normal_df = pd.read_csv('merge_normal_obs.csv')
+uniform_df = pd.read_csv('mergeuniform_obs.csv')
+normal_df = pd.read_csv('mergenormal_obs.csv')
 
 n_uniform = uniform_df['num_elements'].to_numpy()
 comp_uniform = uniform_df['avg_comparison'].to_numpy()
