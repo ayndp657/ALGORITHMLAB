@@ -1,4 +1,4 @@
-//this will generate a data set of 200 numbers in range 0-100 distributed uniformly and save it in .csv form
+//this will generate a data set of 200 numbers in range 0-100 distributed uniformly
 #include <stdio.h>
 #include <time.h>   //for random seed
 #include <stdlib.h> //for rand() and srand()
