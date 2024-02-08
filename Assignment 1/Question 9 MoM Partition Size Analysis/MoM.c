@@ -110,7 +110,7 @@ int find_partition_size_MoM(short *arr, int arr_size, int divide_size)
 void text_to_arr(short *arr, int n)
 {
 
-    FILE *fin = fopen("./uniform_distribution.csv", "r");
+    FILE *fin = fopen("./uniformdistribution.csv", "r");
 
     int temp = 0;
     for (int i = 0; i < n; i++)
@@ -138,7 +138,7 @@ int main()
     int part_size;
     float avg_part_size;
 
-    FILE *fout = fopen("MoM_uniform_part_7_obs.csv", "w");
+    FILE *fout = fopen("MoMuniform_part_7_obs.csv", "w");
     fprintf(fout, "arr_size,avg_partition_size\n");
 
     for (int arr_size = 100; arr_size <= max_arr_size; arr_size += 100)
