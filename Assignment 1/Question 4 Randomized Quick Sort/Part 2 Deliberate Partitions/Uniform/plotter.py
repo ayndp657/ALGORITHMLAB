@@ -5,11 +5,11 @@ import matplotlib
 from pandas.core.indexing import is_label_like
 
 
-part_1_50000_df = pd.read_csv('part_1_50000_obs.csv')
-part_1_10000_df = pd.read_csv('part_1_10000_obs.csv')
-part_1_5000_df = pd.read_csv('part_1_5000_obs.csv')
-part_1_1000_df = pd.read_csv('part_1_1000_obs.csv')
-normal_df = pd.read_csv('part_random_obs.csv') 
+part_1_50000_df = pd.read_csv('part1_50000_obs.csv')
+part_1_10000_df = pd.read_csv('part1_10000_obs.csv')
+part_1_5000_df = pd.read_csv('part1_5000_obs.csv')
+part_1_1000_df = pd.read_csv('part1_1000_obs.csv')
+normal_df = pd.read_csv('partrandom_obs.csv') 
 
 n_1_50000 = part_1_50000_df['num_elements'].to_numpy()
 comp_1_50000 = part_1_50000_df['avg_comparison'].to_numpy()
@@ -55,4 +55,4 @@ axis[1].set_ylabel('time taken (ms)')
 
 plt.xlabel(r'n [array size = $2^n$]')
 
-plt.savefig('observation.png')
+plt.savefig('observationdeliberate.png')
