@@ -57,7 +57,7 @@ void merge(short *arr, int initial, int mid, int final, int *count)
     }
 }
 
-//sorts array of int type in ascending order, put initial as 0, and final as size -1
+//sorts array of int type in ascending order
 void merge_sort(short *arr, int initial, int final, int *count)
 {
     if (initial < final)
