@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-// all position should be given according to zero indexed array
 void insertion_sort(short arr[], int initial, int final)
 {
     for (int i = initial; i <= final; i++)
