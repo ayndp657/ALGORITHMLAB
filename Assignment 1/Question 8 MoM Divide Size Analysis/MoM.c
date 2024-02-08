@@ -67,7 +67,7 @@ int main()
     float start_time, end_time, time_taken;
     double avg_time;
 
-    FILE *fout = fopen("MoM_obs.csv", "w");
+    FILE *fout = fopen("MoMobs.csv", "w");
     fprintf(fout, "div_size,avg_time\n");
 
     int divide_size;
