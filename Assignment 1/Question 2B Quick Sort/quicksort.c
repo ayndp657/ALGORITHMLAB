@@ -40,7 +40,7 @@ int partition(int *arr, int initial, int final)
     }
 }
 
-//sorts array using quick_sort algorithm, give initial as 0, and final as sizeofarray -1
+//sorts array using quick_sort algorithm
 void quick_sort(int *arr, int initial, int final)
 {
     if (initial < final)
