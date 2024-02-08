@@ -53,4 +53,4 @@ axis[1].set_ylabel(r'$\frac{time}{n*lgn}$', rotation=0, labelpad=13)
 
 plt.xlabel(r'n [array size = $2^n$]')
 
-plt.savefig('observation.png')
+plt.savefig('observationaverage.png')
