@@ -11,7 +11,7 @@ void main()
 {
     srand(time(0));
 
-    FILE *fout = fopen("./Assignment 1/Question 1B Normal Distribution/normal_distribution.csv", "w");
+    FILE *fout = fopen("./Assignment 1/Question 1B Normal Distribution/normaldistribution.csv", "w");
 
     for (int i = 0; i < NO_OF_ELEMENTS; i++)
     {
