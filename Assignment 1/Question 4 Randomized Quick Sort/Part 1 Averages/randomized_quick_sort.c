@@ -74,7 +74,7 @@ int is_array_sorted(short *arr, int length)
 void text_to_arr(short *arr, int n)
 {
 
-    FILE *fin = fopen("./normal_distribution.csv", "r");
+    FILE *fin = fopen("./normaldistribution.csv", "r");
 
     int temp = 0;
     for (int i = 0; i < n; i++)
@@ -99,7 +99,7 @@ int main()
     int max_p = 20;
     int num_iter_power = 50;
 
-    FILE *fout = fopen("random_quick_normal_obs.csv", "w");
+    FILE *fout = fopen("randomquick_normal_obs.csv", "w");
 
     fprintf(fout, "num_elements,avg_comparison,avg_time\n");
 
