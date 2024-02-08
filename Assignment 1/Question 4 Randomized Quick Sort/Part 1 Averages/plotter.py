@@ -4,10 +4,10 @@ import numpy as np
 import matplotlib
 from pandas.core.indexing import is_label_like
 
-uniform_df = pd.read_csv('quick_uniform_obs.csv')
-normal_df = pd.read_csv('quick_normal_obs.csv')
-random_uniform_df = pd.read_csv('random_quick_uniform_obs.csv')
-random_normal_df = pd.read_csv('random_quick_normal_obs.csv')
+uniform_df = pd.read_csv('quickuniform_obs.csv')
+normal_df = pd.read_csv('quicknormal_obs.csv')
+random_uniform_df = pd.read_csv('randomquick_uniform_obs.csv')
+random_normal_df = pd.read_csv('randomquick_normal_obs.csv')
 
 n_uniform = uniform_df['num_elements'].to_numpy()
 comp_uniform = uniform_df['avg_comparison'].to_numpy()
