@@ -153,7 +153,7 @@ int is_array_sorted(float *arr, int length)
 void text_to_arr(float *arr, int n)
 {
 
-    FILE *fin = fopen("./normalized_uniform_distribution.csv", "r");
+    FILE *fin = fopen("./normalized_uniformdistribution.csv", "r");
     char a[6];
     fscanf(fin, "%s\n", a);
     float temp = 0;
@@ -178,7 +178,7 @@ void main()
     int max_p = 17;
     int num_iter_power = 10;
 
-    FILE *fout = fopen("bucket_uniform_obs.csv", "w");
+    FILE *fout = fopen("bucketuniform_obs.csv", "w");
 
     fprintf(fout, "num_elements,avg_comparison,avg_time\n");
 
